@@ -2,8 +2,6 @@ FROM ubuntu:14.04
 
 ARG DEBIAN_FRONTEND=noninteractive
 RUN apt-get update
-RUN apt-get upgrade -y
-
 RUN apt-get install -y curl
 
 # Using Varnish v2.1.5 based on this Fastly blog post:

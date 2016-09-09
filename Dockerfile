@@ -43,8 +43,8 @@ RUN autoheader
 # varnishtest and not easily fixable.
 RUN automake --add-missing --copy --foreign; exit 0
 RUN autoconf
-RUN mkdir -vp /opt/varnish
-RUN ./configure --prefix=/opt/varnish
+# By default it installs to /usr/local
+RUN ./configure --prefix=/
 
 # NOTE(wting|2016-09-09): This is to fix the @mkdir_p@ macro removed in newer
 # versions of automake. Unfortunately AC_SUBST([mkdir_p], ['$(MKDIR_P)']) in
@@ -54,3 +54,4 @@ RUN find . -type f -name 'Makefile.in' -exec sed -i 's:$(mkdir_p):mkdir -vp:g' {
 
 RUN make -j4
 RUN make install
+RUN ldconfig

@@ -1,12 +1,15 @@
-FROM ubuntu:16.04
+FROM ubuntu:14.04
 
 ARG DEBIAN_FRONTEND=noninteractive
 RUN apt-get update
 RUN apt-get upgrade -y
 
+RUN apt-get install -y curl
+RUN curl -sfL https://repo.varnish-cache.org/source/varnish-2.1.5.tar.gz | tar xvz -C /tmp/
+
+# Varnish dependencies
 RUN apt-get install -y \
-	curl \
-	# Varnish dependencies
+	patch \
 	automake \
 	libtool \
 	pkg-config \
@@ -17,8 +20,6 @@ RUN apt-get install -y \
 	groff-base \
 	python-docutils \
 	subversion
-
-RUN curl -sfL https://repo.varnish-cache.org/source/varnish-2.1.5.tar.gz | tar xvz -C /tmp/
 
 # Using Varnish v2.1.5 based on this Fastly blog post:
 # https://www.fastly.com/blog/benefits-using-varnish

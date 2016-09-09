@@ -55,3 +55,13 @@ RUN find . -type f -name 'Makefile.in' -exec sed -i 's:$(mkdir_p):mkdir -vp:g' {
 RUN make -j4
 RUN make install
 RUN ldconfig
+
+COPY start-varnishd.sh /usr/local/bin/start-varnishd
+ENV VARNISH_PORT 80
+ENV VARNISH_MEMORY 100m
+ENV VARNISH_OPTS ''
+
+EXPOSE 80
+CMD ["start-varnishd"]
+
+ONBUILD COPY default.vcl /etc/varnish/default.vcl

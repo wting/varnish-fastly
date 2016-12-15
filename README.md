@@ -23,7 +23,7 @@ This image is intended as a base image for other images to built on.
 ### Create a `Dockerfile` in your Varnish project
 
 ```dockerfile
-FROM wting/varnish-fastly
+FROM quay.io/reddit/varnish-fastly:latest
 ```
 
 ### Create a `default.vcl` in your Varnish project
@@ -49,7 +49,7 @@ $ docker run -it --rm --name my-running-varnish my-varnish
 You can override the port Varnish serves in your Dockerfile.
 
 ```dockerfile
-FROM wting/varnish-fastly
+FROM quay.io/reddit/varnish-fastly:latest
 
 ENV VARNISH_PORT 8080
 ENV VARNISH_OPTS "additional varnish options here"
@@ -62,7 +62,7 @@ documentation](https://www.varnish-cache.org/docs/2.1/reference/varnishd.html#op
 You can override the size of the cache.
 
 ```dockerfile
-FROM wting/varnish-fastly
+FROM quay.io/reddit/varnish-fastly:latest
 
 ENV VARNISH_MEMORY 1G
 ```
@@ -79,7 +79,7 @@ Install VMODs in your Varnish project's Dockerfile. For example, to install the
 Querystring module:
 
 ```dockerfile
-FROM wting/varnish-fastly
+FROM quay.io/reddit/varnish-fastly:latest
 
 # Install Querystring Varnish module
 ENV QUERYSTRING_VERSION=0.3
@@ -111,7 +111,7 @@ upgrade your Docker daemon.
 ## Issues
 
 If you have any problems with or questions about this image, please contact us
-through a [GitHub issue](https://github.com/wting/varnish-fastly/issues).
+through a [GitHub issue](https://github.com/reddit/varnish-fastly/issues).
 
 ## Contributing
 

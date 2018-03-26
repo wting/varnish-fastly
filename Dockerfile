@@ -22,10 +22,10 @@ RUN apt-get update \
 # https://www.fastly.com/blog/benefits-using-varnish
 ENV VARNISH_VERSION=2.1.5
 ENV VARNISH_SHA256SUM=2d8049be14ada035d0e3a54c2b519143af40d03d917763cf72d53d8188e5ef83
-RUN curl -sfL https://repo.varnish-cache.org/source/varnish-2.1.5.tar.gz -o /tmp/varnish.tar.gz
+RUN curl -sfL https://varnish-cache.org/_downloads/varnish-2.1.5.tgz -o /tmp/varnish.tgz
 WORKDIR /tmp
-RUN echo "${VARNISH_SHA256SUM} varnish.tar.gz" | sha256sum -c - \
-	&& tar xzf varnish.tar.gz
+RUN echo "${VARNISH_SHA256SUM} varnish.tgz" | sha256sum -c - \
+	&& tar xzf varnish.tgz
 WORKDIR /tmp/varnish-${VARNISH_VERSION}
 COPY ./fix_automake_forwards_incompatibility.patch ./
 RUN patch ./configure.ac < ./fix_automake_forwards_incompatibility.patch
